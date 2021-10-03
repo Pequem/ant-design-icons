@@ -6,7 +6,14 @@
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictNullChecks": false,
+    "strict": true,
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "types": ["jest", "node"]
   },
   "include": ["./src", "./typings/"],
   "typings": "./typings/index.d.ts",

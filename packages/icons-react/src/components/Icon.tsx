@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import Context from './Context';
 
 import { svgBaseProps, warning, useInsertStyles } from '../utils';
 
@@ -16,10 +17,9 @@ export interface CustomIconComponentProps {
   className?: string;
   style?: React.CSSProperties;
 }
-
 export interface IconComponentProps extends IconBaseProps {
   viewBox?: string;
-  component?: React.ComponentType<CustomIconComponentProps | React.SVGProps<SVGSVGElement>>;
+  component?: React.ComponentType<CustomIconComponentProps | React.SVGProps<SVGSVGElement>> | React.ForwardRefExoticComponent<CustomIconComponentProps>;
   ariaLabel?: React.AriaAttributes['aria-label'];
 }
 
@@ -49,13 +49,15 @@ const Icon = React.forwardRef<HTMLSpanElement, IconComponentProps>((props, ref) 
 
   useInsertStyles();
 
+  const { prefixCls = 'anticon' } = React.useContext(Context);
+
   const classString = classNames(
-    'anticon',
+    prefixCls,
     className,
   );
 
   const svgClassString = classNames({
-    'anticon-spin': !!spin,
+    [`${prefixCls}-spin`]: !!spin,
   });
 
   const svgStyle = rotate
